@@ -90,10 +90,38 @@
             margin-bottom: 0.5rem;
         }
 
+        /* Prototype Banner */
+        .prototype-banner {
+            background: linear-gradient(90deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            text-align: center;
+            padding: 12px 20px;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .prototype-banner i {
+            font-size: 1.1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
         /* Language Selector */
         .language-selector {
             position: fixed;
-            top: 55px;
+            top: 120px;
             right: 40px;
             z-index: 1000;
         }
@@ -553,6 +581,12 @@
     </style>
 </head>
 <body>
+    <!-- Prototype Banner -->
+    <div class="prototype-banner" data-translate="prototype.warning">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span>PROTOTYPE - NOT FOR PRODUCTION USE</span>
+    </div>
+
     <div class="language-selector">
         <select id="languageSelect" onchange="changeLanguage()" style="font-size:1.2rem;padding:0.75rem 1rem;border:2px solid var(--il-base);border-radius:8px;background:white;color:var(--il-base);font-weight:600;min-width:200px;">
             <option value="en">English</option>
@@ -1082,9 +1116,9 @@
                             <span data-translate="buttons.previous">Previous</span>
                         </button>
                         
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i>
-                            <span data-translate="buttons.submit">Submit Application</span>
+                        <button type="submit" class="btn btn-primary" disabled style="opacity: 0.6; cursor: not-allowed;">
+                            <i class="fas fa-ban"></i>
+                            <span data-translate="buttons.submit">Submit Application (Disabled - Prototype)</span>
                         </button>
                     </div>
                 </div>
@@ -1101,6 +1135,7 @@
         // Language translations
         const translations = {
             en: {
+                'prototype.warning': 'PROTOTYPE - NOT FOR PRODUCTION USE',
                 'time.estimate': 'Estimated time: 15-20 minutes',
                 'header.title': 'Apply for Illinois Benefits',
                 'header.subtitle': 'Get help with food, healthcare, and cash assistance',
@@ -1171,10 +1206,11 @@
                 'help.monthlyIncome': 'Include money from jobs, Social Security, unemployment, child support, and any other sources.',
                 'buttons.next': 'Next',
                 'buttons.previous': 'Previous',
-                'buttons.submit': 'Submit Application',
+                'buttons.submit': 'Submit Application (Disabled - Prototype)',
                 'buttons.addPerson': 'Add Another Person'
             },
             es: {
+                'prototype.warning': 'PROTOTIPO - NO PARA USO EN PRODUCCIÓN',
                 'time.estimate': 'Tiempo estimado: 15-20 minutos',
                 'header.title': 'Solicitar Beneficios de Illinois',
                 'header.subtitle': 'Obtenga ayuda con comida, atención médica y asistencia en efectivo',
@@ -1245,10 +1281,11 @@
                 'help.monthlyIncome': 'Incluya dinero de trabajos, Seguridad Social, desempleo, manutención infantil y cualquier otra fuente.',
                 'buttons.next': 'Siguiente',
                 'buttons.previous': 'Anterior',
-                'buttons.submit': 'Enviar Solicitud',
+                'buttons.submit': 'Enviar Solicitud (Deshabilitado - Prototipo)',
                 'buttons.addPerson': 'Agregar Otra Persona'
             },
             zh: {
+                'prototype.warning': '原型 - 不用于生产环境',
                 'time.estimate': '预计时间：15-20分钟',
                 'header.title': '申请伊利诺伊州福利',
                 'header.subtitle': '获得食品、医疗保健和现金援助',
@@ -1319,10 +1356,11 @@
                 'help.monthlyIncome': '包括来自工作、社会保障、失业、子女抚养费和任何其他来源的资金。',
                 'buttons.next': '下一步',
                 'buttons.previous': '上一步',
-                'buttons.submit': '提交申请',
+                'buttons.submit': '提交申请（已禁用 - 原型）',
                 'buttons.addPerson': '添加另一个人'
             },
             ar: {
+                'prototype.warning': 'نموذج أولي - لا للاستخدام في الإنتاج',
                 'time.estimate': 'الوقت المقدر: 15-20 دقيقة',
                 'header.title': 'تطبيق للحصول على فوائد إلينوي',
                 'header.subtitle': 'احصل على مساعدة في الطعام والرعاية الصحية والمساعدة النقدية',
@@ -1393,10 +1431,11 @@
                 'help.monthlyIncome': 'أدرج المال من الوظائف والضمان الاجتماعي والبطالة وإعالة الأطفال وأي مصادر أخرى.',
                 'buttons.next': 'التالي',
                 'buttons.previous': 'السابق',
-                'buttons.submit': 'إرسال الطلب',
+                'buttons.submit': 'إرسال الطلب (معطل - نموذج أولي)',
                 'buttons.addPerson': 'إضافة شخص آخر'
             },
             pl: {
+                'prototype.warning': 'PROTOTYP - NIE DO UŻYTKU PRODUKCYJNEGO',
                 'time.estimate': 'Szacowany czas: 15-20 minut',
                 'header.title': 'Złóż wniosek o świadczenia Illinois',
                 'header.subtitle': 'Uzyskaj pomoc w zakresie żywności, opieki zdrowotnej i pomocy finansowej',
@@ -1467,10 +1506,11 @@
                 'help.monthlyIncome': 'Uwzględnij pieniądze z pracy, ubezpieczenia społecznego, bezrobocia, alimentów i wszelkich innych źródeł.',
                 'buttons.next': 'Dalej',
                 'buttons.previous': 'Wstecz',
-                'buttons.submit': 'Złóż wniosek',
+                'buttons.submit': 'Złóż wniosek (Wyłączone - Prototyp)',
                 'buttons.addPerson': 'Dodaj inną osobę'
             },
             ko: {
+                'prototype.warning': '프로토타입 - 프로덕션 사용 금지',
                 'time.estimate': '예상 소요 시간: 15-20분',
                 'header.title': '일리노이 주 혜택 신청',
                 'header.subtitle': '식품, 의료보험 및 현금 지원을 받으세요',
@@ -1541,10 +1581,11 @@
                 'help.monthlyIncome': '직장, 사회보장, 실업수당, 자녀양육비 및 기타 모든 소스에서 나오는 돈을 포함하세요.',
                 'buttons.next': '다음',
                 'buttons.previous': '이전',
-                'buttons.submit': '신청서 제출',
+                'buttons.submit': '신청서 제출 (비활성화 - 프로토타입)',
                 'buttons.addPerson': '다른 사람 추가'
             },
             ht: {
+                'prototype.warning': 'Pwototip - Pa Pou Itilizasyon Pwodiksyon',
                 'time.estimate': 'Tan estime: 15-20 minit',
                 'header.title': 'Aplike pou Benefis Illinois',
                 'header.subtitle': 'Jwenn èd pou manje, swen sante ak asistans lajan kach',
@@ -1619,6 +1660,7 @@
                 'buttons.addPerson': 'Ajoute Lòt Moun'
             },
             vi: {
+                'prototype.warning': 'NGUYÊN MẪU - KHÔNG DÙNG CHO SẢN XUẤT',
                 'time.estimate': 'Thời gian ước tính: 15-20 phút',
                 'header.title': 'Đăng ký Trợ cấp Illinois',
                 'header.subtitle': 'Nhận hỗ trợ về thực phẩm, chăm sóc sức khỏe và trợ cấp tiền mặt',
@@ -1693,6 +1735,7 @@
                 'buttons.addPerson': 'Thêm Người khác'
             },
             tl: {
+                'prototype.warning': 'PROTOTYPE - HINDI PARA SA PRODUKSYON',
                 'time.estimate': 'Tinatayang oras: 15-20 minuto',
                 'header.title': 'Mag-apply para sa mga Benepisyo ng Illinois',
                 'header.subtitle': 'Kumuha ng tulong sa pagkain, pangangalagang pangkalusugan at cash assistance',
@@ -1767,6 +1810,7 @@
                 'buttons.addPerson': 'Magdagdag ng Iba Pang Tao'
             },
             ru: {
+                'prototype.warning': 'ПРОТОТИП - НЕ ДЛЯ ПРОДАКШЕНА',
                 'time.estimate': 'Примерное время: 15-20 минут',
                 'header.title': 'Подать заявку на пособия Иллинойса',
                 'header.subtitle': 'Получите помощь с питанием, медицинским обслуживанием и денежной помощью',
