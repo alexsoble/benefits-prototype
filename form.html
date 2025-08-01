@@ -1,0 +1,1462 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Illinois Benefits - Simple & Fast</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Illinois Design System Colors */
+            --body-copy: #000E14;
+            --text-link: #0365C0;
+            --text-link-hover: #0839AD;
+            --text-link-visited: #660099;
+            --focus-color: #1CA6DF;
+            --grey: #BEBEBE;
+            --red-text: #E21121;
+            
+            /* Theme 1 */
+            --il-dark: #003E62;
+            --il-base: #005180;
+            --il-highlight: #C3371E;
+            
+            /* Theme 2 */
+            --il-dark-2: #0C2534;
+            --il-base-2: #193A4D;
+            --il-highlight-2: #E6A001;
+            
+            /* Theme 3 */
+            --il-dark-3: #05236A;
+            --il-base-3: #0C3189;
+            --il-highlight-3: #E21121;
+            
+            /* Additional colors for form elements */
+            --success-green: #10b981;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--body-copy);
+            background: linear-gradient(135deg, var(--gray-50) 0%, #f0f8ff 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--il-dark) 0%, var(--il-base) 100%);
+            color: white;
+            padding: 6rem 0;
+            margin: 2rem 20px 3rem 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 62, 98, 0.2);
+        }
+
+        .header-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .language-selector select {
+            background: white;
+            border: 2px solid var(--il-base);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            color: var(--il-base);
+            font-weight: 600;
+        }
+
+        /* Time estimate styling */
+        .time-estimate {
+            background: rgba(230, 160, 1, 0.1);
+            border: 1px solid var(--il-highlight-2);
+            color: var(--il-dark-2);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success-green) 0%, var(--il-base) 100%);
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: var(--body-copy);
+            font-weight: 500;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--gray-100);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-header {
+            border-bottom: 2px solid var(--gray-100);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--il-base);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-subtitle {
+            color: var(--body-copy);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .form-row.two-columns {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .form-row.three-columns {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--body-copy);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .required {
+            color: var(--red-text);
+            margin-left: 0.25rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--focus-color);
+            box-shadow: 0 0 0 3px rgba(28, 166, 223, 0.1);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+        }
+
+        /* Radio and Checkbox Groups */
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 12px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+            min-width: 120px;
+        }
+
+        .radio-item:hover, .checkbox-item:hover {
+            border-color: var(--focus-color);
+            background: var(--gray-50);
+        }
+
+        .radio-item.selected, .checkbox-item.selected {
+            border-color: var(--il-base);
+            background: rgba(0, 81, 128, 0.1);
+        }
+
+        /* Help Text */
+        .help-text {
+            background: var(--gray-50);
+            border-left: 4px solid var(--il-base);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            color: var(--body-copy);
+            opacity: 0.8;
+        }
+
+        /* Program Selection */
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .program-card {
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .program-card:hover {
+            border-color: var(--focus-color);
+            transform: translateY(-2px);
+        }
+
+        .program-card.selected {
+            border-color: var(--il-base);
+            background: rgba(0, 81, 128, 0.05);
+        }
+
+        .program-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--il-base);
+        }
+
+        .program-title {
+            font-weight: 700;
+            color: var(--body-copy);
+            margin-bottom: 0.5rem;
+        }
+
+        .program-description {
+            color: var(--body-copy);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Button Container - Now inline with content */
+        .step-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding: 0;
+            gap: 1rem;
+        }
+
+        /* Make buttons much larger and more prominent */
+        .btn {
+            padding: 18px 36px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            min-height: 56px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--il-dark) 0%, var(--il-base) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 62, 98, 0.4);
+            background: linear-gradient(135deg, var(--il-base) 0%, var(--il-dark) 100%);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--body-copy);
+            border: 2px solid var(--grey);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--il-base);
+            color: var(--il-base);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 81, 128, 0.2);
+        }
+
+        /* Alert Boxes */
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .alert-info {
+            background: rgba(0, 81, 128, 0.1);
+            border: 1px solid rgba(0, 81, 128, 0.2);
+            color: var(--il-base);
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--success-green);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 3rem 0;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header p {
+                font-size: 1.1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .form-row.two-columns,
+            .form-row.three-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .radio-group, .checkbox-group {
+                flex-direction: column;
+            }
+
+            .step-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 20px 24px;
+                font-size: 1.2rem;
+            }
+
+            .language-selector {
+                position: static;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Step Navigation */
+        .step-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: var(--gray-100);
+            color: var(--gray-500);
+        }
+
+        .step.active {
+            background: var(--il-base);
+            color: white;
+        }
+
+        .step.completed {
+            background: var(--success-green);
+            color: white;
+        }
+
+        /* Hidden sections */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Phone input styling */
+        .phone-group {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .phone-group input {
+            text-align: center;
+        }
+
+        .phone-group .area-code {
+            width: 70px;
+        }
+
+        .phone-group .exchange {
+            width: 70px;
+        }
+
+        .phone-group .number {
+            width: 90px;
+        }
+
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus indicators */
+        .form-input:focus,
+        .form-select:focus,
+        .btn:focus {
+            outline: 2px solid var(--focus-color);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div style="position:fixed;top:0;left:0;width:100vw;z-index:2000;background:linear-gradient(90deg,#E21121 0%,#C3371E 100%);color:white;text-align:center;font-weight:700;letter-spacing:0.15em;padding:0.5rem 0;font-size:1.1rem;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+        PROTOTYPE
+    </div>
+    <div style="height:2.5rem;"></div>
+    <div class="language-selector" style="margin-top:2rem;text-align:center;">
+        <select id="languageSelect" onchange="changeLanguage()" style="font-size:1.2rem;padding:0.75rem 1rem;border:2px solid var(--il-base);border-radius:8px;background:white;color:var(--il-base);font-weight:600;min-width:200px;">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="zh">中文</option>
+            <option value="ar">العربية</option>
+        </select>
+    </div>
+
+    <header class="header">
+        <div class="header-content">
+            <h1 data-translate="header.title">Apply for Illinois Benefits</h1>
+            <p data-translate="header.subtitle">Get help with food, healthcare, and cash assistance</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="time-estimate">
+            <i class="fas fa-clock"></i>
+            <span data-translate="time.estimate">Estimated time: 15-20 minutes</span>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 12.5%"></div>
+            </div>
+            <div class="progress-text" data-translate="progress.text">Step 1 of 8 - Getting Started</div>
+        </div>
+
+        <form id="benefitsForm">
+            <!-- Step 1: Program Selection -->
+            <div class="section active" id="step1">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-hand-holding-heart"></i>
+                            <span data-translate="step1.title">What help do you need?</span>
+                        </h2>
+                        <p class="card-subtitle" data-translate="step1.subtitle">Select all programs you want to apply for</p>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <span data-translate="step1.info">You can apply with just your name, address, and signature. More details help us process faster.</span>
+                    </div>
+
+                    <div class="program-grid">
+                        <div class="program-card" onclick="toggleProgram('snap')">
+                            <div class="program-icon">🍎</div>
+                            <div class="program-title" data-translate="programs.snap.title">Food Help (SNAP)</div>
+                            <div class="program-description" data-translate="programs.snap.description">Monthly benefits to buy groceries</div>
+                            <input type="checkbox" id="snap" name="programs" value="snap" style="display: none;">
+                        </div>
+
+                        <div class="program-card" onclick="toggleProgram('medical')">
+                            <div class="program-icon">🏥</div>
+                            <div class="program-title" data-translate="programs.medical.title">Healthcare</div>
+                            <div class="program-description" data-translate="programs.medical.description">Medical insurance and doctor visits</div>
+                            <input type="checkbox" id="medical" name="programs" value="medical" style="display: none;">
+                        </div>
+
+                        <div class="program-card" onclick="toggleProgram('cash')">
+                            <div class="program-icon">💰</div>
+                            <div class="program-title" data-translate="programs.cash.title">Cash Help</div>
+                            <div class="program-description" data-translate="programs.cash.description">Monthly money for basic needs</div>
+                            <input type="checkbox" id="cash" name="programs" value="cash" style="display: none;">
+                        </div>
+
+                        <div class="program-card" onclick="toggleProgram('family')">
+                            <div class="program-icon">👨‍👩‍👧‍👦</div>
+                            <div class="program-title" data-translate="programs.family.title">Family Planning</div>
+                            <div class="program-description" data-translate="programs.family.description">Reproductive health services</div>
+                            <input type="checkbox" id="family" name="programs" value="family" style="display: none;">
+                        </div>
+                    </div>
+
+                    <div class="step-buttons">
+                        <div></div> <!-- Empty div for spacing -->
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">
+                            <span data-translate="buttons.next">Next</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Your Information -->
+            <div class="section" id="step2">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-user"></i>
+                            <span data-translate="step2.title">Tell us about yourself</span>
+                        </h2>
+                        <p class="card-subtitle" data-translate="step2.subtitle">We need your basic information to get started</p>
+                    </div>
+
+                    <div class="form-row two-columns">
+                        <div class="form-group">
+                            <label class="form-label" for="firstName">
+                                <span data-translate="fields.firstName">First Name</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="text" id="firstName" name="firstName" class="form-input" required maxlength="14">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="lastName">
+                                <span data-translate="fields.lastName">Last Name</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="text" id="lastName" name="lastName" class="form-input" required maxlength="20">
+                        </div>
+                    </div>
+
+                    <div class="form-row two-columns">
+                        <div class="form-group">
+                            <label class="form-label" for="middleInitial" data-translate="fields.middleInitial">Middle Initial</label>
+                            <input type="text" id="middleInitial" name="middleInitial" class="form-input" maxlength="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="suffix" data-translate="fields.suffix">Suffix</label>
+                            <select id="suffix" name="suffix" class="form-select">
+                                <option value="">None</option>
+                                <option value="Jr">Jr.</option>
+                                <option value="Sr">Sr.</option>
+                                <option value="III">III</option>
+                                <option value="IV">IV</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="formerName" data-translate="fields.formerName">Former Name (if any)</label>
+                        <input type="text" id="formerName" name="formerName" class="form-input" maxlength="20">
+                    </div>
+
+                    <div class="step-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                            <span data-translate="buttons.previous">Previous</span>
+                        </button>
+                        
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">
+                            <span data-translate="buttons.next">Next</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Address -->
+            <div class="section" id="step3">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-home"></i>
+                            <span data-translate="step3.title">Where do you live?</span>
+                        </h2>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="checkbox" id="homeless" name="homeless" style="margin-right: 0.5rem;">
+                            <span data-translate="fields.homeless">I don't have a permanent address right now</span>
+                        </label>
+                        <div class="help-text" data-translate="help.homeless">
+                            If you're homeless, fill out the mailing address below where we can send you mail.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="address">
+                            <span data-translate="fields.address">Street Address</span>
+                            <span class="required">*</span>
+                        </label>
+                        <input type="text" id="address" name="address" class="form-input" required maxlength="35">
+                    </div>
+
+                    <div class="form-row three-columns">
+                        <div class="form-group">
+                            <label class="form-label" for="city">
+                                <span data-translate="fields.city">City</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="text" id="city" name="city" class="form-input" required maxlength="25">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="state">
+                                <span data-translate="fields.state">State</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="text" id="state" name="state" class="form-input" value="Illinois" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="zipCode">
+                                <span data-translate="fields.zipCode">ZIP Code</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="text" id="zipCode" name="zipCode" class="form-input" required pattern="[0-9]{5}" maxlength="5">
+                        </div>
+                    </div>
+
+                    <div class="step-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                            <span data-translate="buttons.previous">Previous</span>
+                        </button>
+                        
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">
+                            <span data-translate="buttons.next">Next</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Contact Information -->
+            <div class="section" id="step4">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-phone"></i>
+                            <span data-translate="step4.title">How can we reach you?</span>
+                        </h2>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="phone" data-translate="fields.phone">Phone Number</label>
+                        <div class="phone-group">
+                            <input type="tel" class="form-input area-code" placeholder="312" maxlength="3">
+                            <span>-</span>
+                            <input type="tel" class="form-input exchange" placeholder="555" maxlength="3">
+                            <span>-</span>
+                            <input type="tel" class="form-input number" placeholder="0123" maxlength="4">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-translate="fields.phoneType">Phone Type</label>
+                        <div class="radio-group">
+                            <div class="radio-item" onclick="selectRadio('phoneType', 'mobile')">
+                                <input type="radio" name="phoneType" value="mobile" id="mobile">
+                                <span data-translate="options.mobile">Mobile</span>
+                            </div>
+                            <div class="radio-item" onclick="selectRadio('phoneType', 'home')">
+                                <input type="radio" name="phoneType" value="home" id="home">
+                                <span data-translate="options.home">Home</span>
+                            </div>
+                            <div class="radio-item" onclick="selectRadio('phoneType', 'work')">
+                                <input type="radio" name="phoneType" value="work" id="work">
+                                <span data-translate="options.work">Work</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="checkbox" id="textAlerts" name="textAlerts" style="margin-right: 0.5rem;">
+                            <span data-translate="fields.textAlerts">Send me text message reminders</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-translate="fields.preferredLanguage">Preferred Language</label>
+                        <div class="radio-group">
+                            <div class="radio-item" onclick="selectRadio('preferredLanguage', 'english')">
+                                <input type="radio" name="preferredLanguage" value="english" id="english">
+                                <span data-translate="options.english">English</span>
+                            </div>
+                            <div class="radio-item" onclick="selectRadio('preferredLanguage', 'spanish')">
+                                <input type="radio" name="preferredLanguage" value="spanish" id="spanish">
+                                <span data-translate="options.spanish">Spanish</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                            <span data-translate="buttons.previous">Previous</span>
+                        </button>
+                        
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">
+                            <span data-translate="buttons.next">Next</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Household -->
+            <div class="section" id="step5">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-users"></i>
+                            <span data-translate="step5.title">Who lives with you?</span>
+                        </h2>
+                        <p class="card-subtitle" data-translate="step5.subtitle">Include everyone who lives in your home, even if they don't need help</p>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class="fas fa-shield-alt"></i>
+                        <span data-translate="step5.privacy">All information is kept private and secure by law.</span>
+                    </div>
+
+                    <div id="householdMembers">
+                        <div class="household-member">
+                            <h3 style="margin-bottom: 1rem; color: var(--il-base);">
+                                <span data-translate="step5.you">You (Primary Applicant)</span>
+                            </h3>
+                            
+                            <div class="form-row two-columns">
+                                <div class="form-group">
+                                    <label class="form-label" for="yourBirthDate" data-translate="fields.birthDate">Birth Date</label>
+                                    <input type="date" id="yourBirthDate" name="yourBirthDate" class="form-input">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="yourGender" data-translate="fields.gender">Gender</label>
+                                    <select id="yourGender" name="yourGender" class="form-select">
+                                        <option value="" data-translate="options.selectGender">Select...</option>
+                                        <option value="M" data-translate="options.male">Male</option>
+                                        <option value="F" data-translate="options.female">Female</option>
+                                        <option value="X" data-translate="options.other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" data-translate="fields.citizenship">Are you a U.S. citizen?</label>
+                                <div class="radio-group">
+                                    <div class="radio-item" onclick="selectRadio('citizenship', 'yes')">
+                                        <input type="radio" name="citizenship" value="yes" id="citizenYes">
+                                        <span data-translate="options.yes">Yes</span>
+                                    </div>
+                                    <div class="radio-item" onclick="selectRadio('citizenship', 'no')">
+                                        <input type="radio" name="citizenship" value="no" id="citizenNo">
+                                        <span data-translate="options.no">No</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-secondary" onclick="addHouseholdMember()" style="margin-bottom: 2rem;">
+                        <i class="fas fa-plus"></i>
+                        <span data-translate="buttons.addPerson">Add Another Person</span>
+                    </button>
+
+                    <div class="step-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                            <span data-translate="buttons.previous">Previous</span>
+                        </button>
+                        
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">
+                            <span data-translate="buttons.next">Next</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Income Information -->
+            <div class="section" id="step6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span data-translate="step6.title">Income Information</span>
+                        </h2>
+                        <p class="card-subtitle" data-translate="step6.subtitle">Tell us about money coming into your household</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-translate="fields.currentlyEmployed">Is anyone in your household currently working?</label>
+                        <div class="radio-group">
+                            <div class="radio-item" onclick="selectRadio('currentlyEmployed', 'yes')">
+                                <input type="radio" name="currentlyEmployed" value="yes" id="employedYes">
+                                <span data-translate="options.yes">Yes</span>
+                            </div>
+                            <div class="radio-item" onclick="selectRadio('currentlyEmployed', 'no')">
+                                <input type="radio" name="currentlyEmployed" value="no" id="employedNo">
+                                <span data-translate="options.no">No</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="monthlyIncome" data-translate="fields.monthlyIncome">Total monthly income for your household (before taxes)</label>
+                        <div style="position: relative;">
+                            <span style="position: absolute; left: 12px; top: 12px; color: var(--body-copy);">$</span>
+                            <input type="number" id="monthlyIncome" name="monthlyIncome" class="form-input" style="padding-left: 32px;" min="0">
+                        </div>
+                        <div class="help-text" data-translate="help.monthlyIncome">
+                            Include money from jobs, Social Security, unemployment, child support, and any other sources.
+                        </div>
+                    </div>
+
+                    <div class="step-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                            <span data-translate="buttons.previous">Previous</span>
+                        </button>
+                        
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">
+                            <span data-translate="buttons.next">Next</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 7: Resources -->
+            <div class="section" id="step7">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-piggy-bank"></i>
+                            <span data-translate="step7.title">Money and Property</span>
+                        </h2>
+                        <p class="card-subtitle" data-translate="step7.subtitle">Tell us about savings, property, and vehicles you own</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="cashSavings" data-translate="fields.cashSavings">How much money do you have in cash, checking, and savings?</label>
+                        <div style="position: relative;">
+                            <span style="position: absolute; left: 12px; top: 12px; color: var(--body-copy);">$</span>
+                            <input type="number" id="cashSavings" name="cashSavings" class="form-input" style="padding-left: 32px;" min="0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-translate="fields.ownVehicle">Do you own a car, truck, or other vehicle?</label>
+                        <div class="radio-group">
+                            <div class="radio-item" onclick="selectRadio('ownVehicle', 'yes')">
+                                <input type="radio" name="ownVehicle" value="yes" id="vehicleYes">
+                                <span data-translate="options.yes">Yes</span>
+                            </div>
+                            <div class="radio-item" onclick="selectRadio('ownVehicle', 'no')">
+                                <input type="radio" name="ownVehicle" value="no" id="vehicleNo">
+                                <span data-translate="options.no">No</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-translate="fields.ownProperty">Do you own your home or other property?</label>
+                        <div class="radio-group">
+                            <div class="radio-item" onclick="selectRadio('ownProperty', 'yes')">
+                                <input type="radio" name="ownProperty" value="yes" id="propertyYes">
+                                <span data-translate="options.yes">Yes</span>
+                            </div>
+                            <div class="radio-item" onclick="selectRadio('ownProperty', 'no')">
+                                <input type="radio" name="ownProperty" value="no" id="propertyNo">
+                                <span data-translate="options.no">No</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                            <span data-translate="buttons.previous">Previous</span>
+                        </button>
+                        
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">
+                            <span data-translate="buttons.next">Next</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 8: Review and Submit -->
+            <div class="section" id="step8">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-check-circle"></i>
+                            <span data-translate="step8.title">Review and Submit</span>
+                        </h2>
+                        <p class="card-subtitle" data-translate="step8.subtitle">Please review your information and sign your application</p>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class="fas fa-gavel"></i>
+                        <span data-translate="step8.legal">By submitting this application, I declare that all information is true and complete. I understand that false information may result in denial of benefits or legal action.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="checkbox" id="fraudPenalty" name="fraudPenalty" style="margin-right: 0.5rem;" required>
+                            <span data-translate="fields.fraudPenalty">I understand the fraud penalty warning</span>
+                            <span class="required">*</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="checkbox" id="electronicSignature" name="electronicSignature" style="margin-right: 0.5rem;" required>
+                            <span data-translate="fields.electronicSignature">I agree to sign this application electronically</span>
+                            <span class="required">*</span>
+                        </label>
+                    </div>
+
+                    <div class="form-row two-columns">
+                        <div class="form-group">
+                            <label class="form-label" for="signatureFirstName">
+                                <span data-translate="fields.signatureFirstName">First Name (Electronic Signature)</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="text" id="signatureFirstName" name="signatureFirstName" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="signatureLastName">
+                                <span data-translate="fields.signatureLastName">Last Name (Electronic Signature)</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="text" id="signatureLastName" name="signatureLastName" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="step-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                            <span data-translate="buttons.previous">Previous</span>
+                        </button>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            <span data-translate="buttons.submit">Submit Application</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Form state
+        let currentStep = 1;
+        const totalSteps = 8;
+        let householdMemberCount = 1;
+
+        // Language translations
+        const translations = {
+            en: {
+                'time.estimate': 'Estimated time: 15-20 minutes',
+                'header.title': 'Apply for Illinois Benefits',
+                'header.subtitle': 'Get help with food, healthcare, and cash assistance',
+                'progress.text': 'Step 1 of 8 - Getting Started',
+                'step1.title': 'What help do you need?',
+                'step1.subtitle': 'Select all programs you want to apply for',
+                'step1.info': 'You can apply with just your name, address, and signature. More details help us process faster.',
+                'programs.snap.title': 'Food Help (SNAP)',
+                'programs.snap.description': 'Monthly benefits to buy groceries',
+                'programs.medical.title': 'Healthcare',
+                'programs.medical.description': 'Medical insurance and doctor visits',
+                'programs.cash.title': 'Cash Help',
+                'programs.cash.description': 'Monthly money for basic needs',
+                'programs.family.title': 'Family Planning',
+                'programs.family.description': 'Reproductive health services',
+                'step2.title': 'Tell us about yourself',
+                'step2.subtitle': 'We need your basic information to get started',
+                'step3.title': 'Where do you live?',
+                'step4.title': 'How can we reach you?',
+                'step5.title': 'Who lives with you?',
+                'step5.subtitle': 'Include everyone who lives in your home, even if they don\'t need help',
+                'step5.privacy': 'All information is kept private and secure by law.',
+                'step5.you': 'You (Primary Applicant)',
+                'step6.title': 'Income Information',
+                'step6.subtitle': 'Tell us about money coming into your household',
+                'step7.title': 'Money and Property',
+                'step7.subtitle': 'Tell us about savings, property, and vehicles you own',
+                'step8.title': 'Review and Submit',
+                'step8.subtitle': 'Please review your information and sign your application',
+                'step8.legal': 'By submitting this application, I declare that all information is true and complete. I understand that false information may result in denial of benefits or legal action.',
+                'fields.firstName': 'First Name',
+                'fields.lastName': 'Last Name',
+                'fields.middleInitial': 'Middle Initial',
+                'fields.suffix': 'Suffix',
+                'fields.formerName': 'Former Name (if any)',
+                'fields.homeless': 'I don\'t have a permanent address right now',
+                'fields.address': 'Street Address',
+                'fields.city': 'City',
+                'fields.state': 'State',
+                'fields.zipCode': 'ZIP Code',
+                'fields.phone': 'Phone Number',
+                'fields.phoneType': 'Phone Type',
+                'fields.textAlerts': 'Send me text message reminders',
+                'fields.preferredLanguage': 'Preferred Language',
+                'fields.birthDate': 'Birth Date',
+                'fields.gender': 'Gender',
+                'fields.citizenship': 'Are you a U.S. citizen?',
+                'fields.currentlyEmployed': 'Is anyone in your household currently working?',
+                'fields.monthlyIncome': 'Total monthly income for your household (before taxes)',
+                'fields.cashSavings': 'How much money do you have in cash, checking, and savings?',
+                'fields.ownVehicle': 'Do you own a car, truck, or other vehicle?',
+                'fields.ownProperty': 'Do you own your home or other property?',
+                'fields.fraudPenalty': 'I understand the fraud penalty warning',
+                'fields.electronicSignature': 'I agree to sign this application electronically',
+                'fields.signatureFirstName': 'First Name (Electronic Signature)',
+                'fields.signatureLastName': 'Last Name (Electronic Signature)',
+                'options.yes': 'Yes',
+                'options.no': 'No',
+                'options.mobile': 'Mobile',
+                'options.home': 'Home',
+                'options.work': 'Work',
+                'options.english': 'English',
+                'options.spanish': 'Spanish',
+                'options.selectGender': 'Select...',
+                'options.male': 'Male',
+                'options.female': 'Female',
+                'options.other': 'Other',
+                'help.homeless': 'If you\'re homeless, fill out the mailing address below where we can send you mail.',
+                'help.monthlyIncome': 'Include money from jobs, Social Security, unemployment, child support, and any other sources.',
+                'buttons.next': 'Next',
+                'buttons.previous': 'Previous',
+                'buttons.submit': 'Submit Application',
+                'buttons.addPerson': 'Add Another Person'
+            },
+            es: {
+                'time.estimate': 'Tiempo estimado: 15-20 minutos',
+                'header.title': 'Solicitar Beneficios de Illinois',
+                'header.subtitle': 'Obtenga ayuda con comida, atención médica y asistencia en efectivo',
+                'step1.title': '¿Qué ayuda necesita?',
+                'step1.subtitle': 'Seleccione todos los programas para los que desea aplicar',
+                'step1.info': 'Puede aplicar solo con su nombre, dirección y firma. Más detalles ayudan a procesar más rápido.',
+                'programs.snap.title': 'Ayuda con Comida (SNAP)',
+                'programs.snap.description': 'Beneficios mensuales para comprar comestibles',
+                'programs.medical.title': 'Atención Médica',
+                'programs.medical.description': 'Seguro médico y visitas al doctor',
+                'programs.cash.title': 'Ayuda en Efectivo',
+                'programs.cash.description': 'Dinero mensual para necesidades básicas',
+                'programs.family.title': 'Planificación Familiar',
+                'programs.family.description': 'Servicios de salud reproductiva',
+                'buttons.next': 'Siguiente',
+                'buttons.previous': 'Anterior',
+                'buttons.submit': 'Enviar Solicitud',
+                'buttons.addPerson': 'Agregar Otra Persona'
+            }
+        };
+
+        // Initialize form
+        function initForm() {
+            updateProgress();
+        }
+
+        // Language switching
+        function changeLanguage() {
+            const selectedLang = document.getElementById('languageSelect').value;
+            const elements = document.querySelectorAll('[data-translate]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[selectedLang] && translations[selectedLang][key]) {
+                    element.textContent = translations[selectedLang][key];
+                }
+            });
+
+            // Update HTML dir attribute for RTL languages
+            if (selectedLang === 'ar') {
+                document.documentElement.setAttribute('dir', 'rtl');
+            } else {
+                document.documentElement.setAttribute('dir', 'ltr');
+            }
+        }
+
+        // Navigation functions
+        function nextStep() {
+            if (validateCurrentStep()) {
+                if (currentStep < totalSteps) {
+                    document.getElementById(`step${currentStep}`).classList.remove('active');
+                    currentStep++;
+                    document.getElementById(`step${currentStep}`).classList.add('active');
+                    updateProgress();
+                    scrollToTop();
+                }
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                currentStep--;
+                document.getElementById(`step${currentStep}`).classList.add('active');
+                updateProgress();
+                scrollToTop();
+            }
+        }
+
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+            
+            const progressTexts = {
+                1: 'Step 1 of 8 - Getting Started',
+                2: 'Step 2 of 8 - Your Information',
+                3: 'Step 3 of 8 - Your Address',
+                4: 'Step 4 of 8 - Contact Information',
+                5: 'Step 5 of 8 - Household Members',
+                6: 'Step 6 of 8 - Income Information',
+                7: 'Step 7 of 8 - Resources',
+                8: 'Step 8 of 8 - Review and Submit'
+            };
+            
+            document.querySelector('.progress-text').textContent = progressTexts[currentStep];
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Program selection
+        function toggleProgram(programId) {
+            const checkbox = document.getElementById(programId);
+            const card = checkbox.closest('.program-card');
+            
+            checkbox.checked = !checkbox.checked;
+            
+            if (checkbox.checked) {
+                card.classList.add('selected');
+            } else {
+                card.classList.remove('selected');
+            }
+        }
+
+        // Radio button selection
+        function selectRadio(name, value) {
+            // Clear all radio items for this group
+            document.querySelectorAll(`input[name="${name}"]`).forEach(radio => {
+                radio.closest('.radio-item').classList.remove('selected');
+            });
+            
+            // Select the clicked item
+            const selectedRadio = document.querySelector(`input[name="${name}"][value="${value}"]`);
+            selectedRadio.checked = true;
+            selectedRadio.closest('.radio-item').classList.add('selected');
+        }
+
+        // Validation
+        function validateCurrentStep() {
+            const currentSection = document.getElementById(`step${currentStep}`);
+            const requiredFields = currentSection.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = 'var(--red-text)';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = 'var(--gray-200)';
+                }
+            });
+
+            // Special validation for step 1 (program selection)
+            if (currentStep === 1) {
+                const programsSelected = document.querySelectorAll('input[name="programs"]:checked');
+                if (programsSelected.length === 0) {
+                    alert('Please select at least one program.');
+                    isValid = false;
+                }
+            }
+
+            return isValid;
+        }
+
+        // Add household member
+        function addHouseholdMember() {
+            householdMemberCount++;
+            const container = document.getElementById('householdMembers');
+            
+            const memberDiv = document.createElement('div');
+            memberDiv.className = 'household-member';
+            memberDiv.innerHTML = `
+                <hr style="margin: 2rem 0; border: 1px solid var(--gray-200);">
+                <h3 style="margin-bottom: 1rem; color: var(--il-base);">
+                    Person ${householdMemberCount}
+                    <button type="button" onclick="removeHouseholdMember(this)" style="background: var(--red-text); color: white; border: none; border-radius: 4px; padding: 4px 8px; margin-left: 1rem; font-size: 0.8rem;">
+                        <i class="fas fa-trash"></i> Remove
+                    </button>
+                </h3>
+                
+                <div class="form-row two-columns">
+                    <div class="form-group">
+                        <label class="form-label">First Name</label>
+                        <input type="text" name="householdFirstName${householdMemberCount}" class="form-input" maxlength="14">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" name="householdLastName${householdMemberCount}" class="form-input" maxlength="20">
+                    </div>
+                </div>
+                
+                <div class="form-row two-columns">
+                    <div class="form-group">
+                        <label class="form-label">Birth Date</label>
+                        <input type="date" name="householdBirthDate${householdMemberCount}" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Relationship to You</label>
+                        <select name="householdRelationship${householdMemberCount}" class="form-select">
+                            <option value="">Select...</option>
+                            <option value="spouse">Spouse</option>
+                            <option value="child">Child</option>
+                            <option value="parent">Parent</option>
+                            <option value="sibling">Sibling</option>
+                            <option value="other">Other Relative</option>
+                            <option value="unrelated">Not Related</option>
+                        </select>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(memberDiv);
+        }
+
+        function removeHouseholdMember(button) {
+            button.closest('.household-member').remove();
+        }
+
+        // Form submission
+        document.getElementById('benefitsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validateCurrentStep()) {
+                // Show success message
+                alert('Thank you! Your application has been submitted successfully. You will receive a confirmation number and next steps via mail or phone.');
+                
+                // In a real application, you would submit the form data to a server here
+                console.log('Form submitted successfully');
+            }
+        });
+
+        // Auto-fill signature fields when typing in name fields
+        document.getElementById('firstName').addEventListener('input', function() {
+            document.getElementById('signatureFirstName').value = this.value;
+        });
+
+        document.getElementById('lastName').addEventListener('input', function() {
+            document.getElementById('signatureLastName').value = this.value;
+        });
+
+        // Phone number formatting
+        document.querySelectorAll('.phone-group input').forEach(input => {
+            input.addEventListener('input', function() {
+                this.value = this.value.replace(/\D/g, '');
+                
+                if (this.value.length === this.maxLength && this.nextElementSibling && this.nextElementSibling.nextElementSibling) {
+                    this.nextElementSibling.nextElementSibling.focus();
+                }
+            });
+        });
+
+        // ZIP code validation
+        document.getElementById('zipCode').addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '');
+        });
+
+        // Auto-populate signature fields
+        function autoPopulateSignature() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            
+            if (firstName) document.getElementById('signatureFirstName').value = firstName;
+            if (lastName) document.getElementById('signatureLastName').value = lastName;
+        }
+
+        // Initialize form when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initForm();
+            
+            // Auto-populate signature fields when navigating to final step
+            document.addEventListener('click', function(e) {
+                if (e.target.onclick && currentStep === 7) {
+                    setTimeout(autoPopulateSignature, 100);
+                }
+            });
+        });
+
+        // Accessibility improvements
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.target.classList.contains('radio-item')) {
+                e.target.click();
+            }
+        });
+
+        // Add keyboard navigation for radio/checkbox items
+        document.querySelectorAll('.radio-item, .checkbox-item').forEach(item => {
+            item.setAttribute('tabindex', '0');
+            item.setAttribute('role', 'button');
+        });
+    </script>
+</body>
+</html>
