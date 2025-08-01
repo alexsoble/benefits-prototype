@@ -2077,7 +2077,20 @@
             if (currentStep === 1) {
                 const programsSelected = document.querySelectorAll('input[name="programs"]:checked');
                 if (programsSelected.length === 0) {
-                    alert('Please select at least one program.');
+                    const currentLang = document.getElementById('languageSelect').value;
+                    const alertMessages = {
+                        en: 'Please select at least one program.',
+                        es: 'Por favor seleccione al menos un programa.',
+                        zh: '请至少选择一个项目。',
+                        ar: 'يرجى اختيار برنامج واحد على الأقل.',
+                        pl: 'Proszę wybrać co najmniej jeden program.',
+                        ko: '최소한 하나의 프로그램을 선택해 주세요.',
+                        ht: 'Tanpri chwazi omwen yon pwogram.',
+                        vi: 'Vui lòng chọn ít nhất một chương trình.',
+                        tl: 'Mangyaring pumili ng kahit isang programa.',
+                        ru: 'Пожалуйста, выберите хотя бы одну программу.'
+                    };
+                    alert(alertMessages[currentLang] || alertMessages.en);
                     isValid = false;
                 }
             }
